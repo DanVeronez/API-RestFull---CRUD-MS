@@ -1,7 +1,6 @@
 package com.teste.primeiroexemplo.repository;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Optional;
 
