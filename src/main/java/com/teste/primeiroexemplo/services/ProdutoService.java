@@ -76,7 +76,7 @@ public class ProdutoService {
      * Metodo para deletar um produto
      * @param id do produto que será deletado
      */
-    public void deletar(Integer id){
+    public String deletar(Integer id){
 
         Optional<Produto> produtoOptional = produtoRepository.findById(id);
 
@@ -85,6 +85,8 @@ public class ProdutoService {
         }
 
         produtoRepository.deleteById(id);
+
+        return "Produto com ID: " + id + " foi Deletado com sucesso!";
     }
 
     /**
