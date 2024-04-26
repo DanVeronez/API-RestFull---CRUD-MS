@@ -1,9 +1,13 @@
-package com.teste.primeiroexemplo.controller;
+package com.teste.primeiroexemplo.view.controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.teste.primeiroexemplo.model.Produto;
 import com.teste.primeiroexemplo.services.ProdutoService;
+import com.teste.primeiroexemplo.shared.ProdutoDTO;
+import com.teste.primeiroexemplo.view.model.ProdutoResponse;
 
 @RestController
 @RequestMapping("/api/produtos")
@@ -24,8 +30,15 @@ public class ProdutoController {
     private ProdutoService produtoService;
 
     @GetMapping
-    public List<Produto> obterTodos(){
-        return produtoService.obterTodos();
+    public ResponseEntity<List<ProdutoResponse>> obterTodos(){
+
+        List<ProdutoDTO> produtosDTO = produtoService.obterTodos();
+
+        List<ProdutoResponse> produtoResponse = produtosDTO.stream()
+        .map(produtoDTO -> new ModelMapper().map(produtoDTO, ProdutoResponse.class))
+        .collect(Collectors.toList());
+
+        return new ResponseEntity<>(produtoResponse, HttpStatus.OK);
     }
 
     @PostMapping
