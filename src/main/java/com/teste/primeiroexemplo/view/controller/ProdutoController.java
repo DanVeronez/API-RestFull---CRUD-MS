@@ -47,7 +47,7 @@ public class ProdutoController {
 
         Optional<ProdutoDTO> produtoDtO = produtoService.obterPorID(id);
 
-        ProdutoResponse produtoResponse = new ModelMapper().map(produtoDtO, ProdutoResponse.class);
+        ProdutoResponse produtoResponse = new ModelMapper().map(produtoDtO.get(), ProdutoResponse.class);
 
         return new ResponseEntity<>(Optional.of(produtoResponse),HttpStatus.OK);
     }

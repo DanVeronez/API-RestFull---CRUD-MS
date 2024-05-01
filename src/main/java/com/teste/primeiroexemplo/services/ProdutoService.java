@@ -30,8 +30,8 @@ public class ProdutoService {
         List<Produto> produtos = produtoRepository.findAll();
 
         return produtos.stream()
-                       .map(produto -> new ModelMapper().map(produto, ProdutoDTO.class))
-                       .collect(Collectors.toList());
+        .map(produto -> new ModelMapper().map(produto, ProdutoDTO.class))
+        .collect(Collectors.toList());
     }
 
     /**
@@ -65,7 +65,7 @@ public class ProdutoService {
 
         Produto produto = modelMapper.map(produtodDto, Produto.class);
 
-        produtoRepository.save(produto);
+        produto = produtoRepository.save(produto);
 
         produtodDto.setId(produto.getId());
 
@@ -96,6 +96,12 @@ public class ProdutoService {
      */
     public ProdutoDTO atualizar(Integer id, ProdutoDTO produtoDTO){
         
+        Optional<Produto> produtoExists = produtoRepository.findById(id);
+
+        if (produtoExists.isEmpty()) {
+            throw new ResourceNotFoundException("Produto com ID " + id + " não encontrado!");
+        }
+
         produtoDTO.setId(id);
         
         ModelMapper mapper = new ModelMapper();
