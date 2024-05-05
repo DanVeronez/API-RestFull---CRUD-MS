@@ -2,7 +2,6 @@ package com.teste.primeiroexemplo.services;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Service;
 import com.teste.primeiroexemplo.model.Produto;
 import com.teste.primeiroexemplo.model.exception.ResourceNotFoundException;
 import com.teste.primeiroexemplo.repository.ProdutoRepository;
-import com.teste.primeiroexemplo.repository.ProdutoRepository_old;
 import com.teste.primeiroexemplo.shared.ProdutoDTO;
 
 @Service

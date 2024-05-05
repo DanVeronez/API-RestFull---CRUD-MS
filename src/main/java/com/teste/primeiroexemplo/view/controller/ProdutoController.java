@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.teste.primeiroexemplo.model.Produto;
 import com.teste.primeiroexemplo.services.ProdutoService;
 import com.teste.primeiroexemplo.shared.ProdutoDTO;
 import com.teste.primeiroexemplo.view.model.ProdutoRequest;
